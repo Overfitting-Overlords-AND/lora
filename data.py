@@ -3,15 +3,14 @@ import transformers as t
 import datasets as d
 
 
-class TrainDataset(Dataset):
-  def __init__(self):
+class DatasetReader(Dataset):
+  def __init__(self, ds):
     with open('./template.txt', 'r') as file:
       self.template = file.read()
     self.tokenizer = t.AutoTokenizer.from_pretrained("NousResearch/Llama-2-7b-hf")
     self.tokenizer.pad_token_id = 0
     self.tokenizer.padding_side = "left"
-    self.ds = d.load_dataset("b-mc2/sql-create-context")
-    self.ds = self.ds["train"]
+    self.ds = ds
     self.ds = self.ds.map(self.prompt, remove_columns=["question", "context", "answer"], load_from_cache_file=False, num_proc=8)
     self.ds = self.ds.map(self.tokenize, remove_columns=["prompt"], load_from_cache_file=False, num_proc=8)
 
