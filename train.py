@@ -3,11 +3,12 @@ import model
 import data
 import os
 import wandb
+import datasets
 
 is_ddp = int(os.environ.get("WORLD_SIZE", 1)) != 1
 m = model.get_model()
 
-dataset = data.load_dataset("b-mc2/sql-create-context")
+dataset = datasets.load_dataset("b-mc2/sql-create-context")
 tokenizer = transformers.AutoTokenizer.from_pretrained("NousResearch/Llama-2-7b-hf")
 
 train_ds, eval_ds = dataset["train"].train_test_split(test_size=0.1).values()
