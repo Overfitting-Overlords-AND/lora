@@ -4,10 +4,10 @@ import datasets as d
 
 
 class DatasetReader(Dataset):
-  def __init__(self, ds):
+  def __init__(self, ds, tr):
     with open('./template.txt', 'r') as file:
       self.template = file.read()
-    self.tokenizer = t.AutoTokenizer.from_pretrained("NousResearch/Llama-2-7b-hf")
+    self.tokenizer = tr
     self.tokenizer.pad_token_id = 0
     self.tokenizer.padding_side = "left"
     self.ds = ds

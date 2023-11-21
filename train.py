@@ -4,15 +4,16 @@ import data
 import os
 import wandb
 
-
 is_ddp = int(os.environ.get("WORLD_SIZE", 1)) != 1
 m = model.get_model()
 
 dataset = data.load_dataset("b-mc2/sql-create-context")
-train_dataset, eval_dataset = dataset["train"].train_test_split(test_size=0.1).values()
-train_dataset, eval_dataset = data.DatasetReader(train_dataset), data.DatasetReader(eval_dataset)
+tokenizer = transformers.AutoTokenizer.from_pretrained("NousResearch/Llama-2-7b-hf")
 
-collator = transformers.DataCollatorForSeq2Seq(ds.tokenizer, pad_to_multiple_of=8, return_tensors="pt", padding=True)
+train_ds, eval_ds = dataset["train"].train_test_split(test_size=0.1).values()
+train_dataset, eval_dataset = data.DatasetReader(train_ds, tokenizer), data.DatasetReader(eval_ds, tokenizer)
+
+collator = transformers.DataCollatorForSeq2Seq(eval_dataset.tokenizer, pad_to_multiple_of=8, return_tensors="pt", padding=True)
 
 wandb.init(project="lora_text_to_sql")
 
