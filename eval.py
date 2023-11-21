@@ -10,11 +10,13 @@ tokenizer.pad_token_id = 0
 #%%
 config = peft.LoraConfig(r=8, lora_alpha=16, target_modules=["q_proj", "v_proj"], lora_dropout=0.005, bias="none", task_type="CAUSAL_LM")
 model = peft.get_peft_model(model, config)
-# peft.set_peft_model_state_dict(model, torch.load("./output/checkpoint-600/adapter_model.bin"))
+peft.set_peft_model_state_dict(model, torch.load("./output/checkpoint-400/adapter_model.bin"))
 #%%
-TEMPLATE = "Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.\n\n### Instruction:\n{instruction}\n\n### Response:\n"
-INSTRUCTION = "Python how to insert something at the beginning of a list?"
-prompt = TEMPLATE.format(instruction=INSTRUCTION)
+with open('./prompt.txt', 'r') as file:
+  TEMPLATE = file.read()
+QUESTION = "How many teachers are earning less than £40000"
+CONTEXT = "CREATE TABLE teacher (sgit alary INTEGER)"
+prompt = TEMPLATE.format(question=QUESTION,context=CONTEXT)
 #%%
 pipe = t.pipeline(task="text-generation", model=model, tokenizer=tokenizer, max_length=500)
 print("pipe(prompt)", pipe(prompt))
