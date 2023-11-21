@@ -5,7 +5,7 @@ import datasets as d
 
 class DatasetReader(Dataset):
   def __init__(self, ds, tr):
-    with open('./template.txt', 'r') as file:
+    with open('./prompt.txt', 'r') as file:
       self.template = file.read()
     self.tokenizer = tr
     self.tokenizer.pad_token_id = 0
