@@ -1,0 +1,11 @@
+Below is an question that describes a request for data from an SQL table, paired with the DDL statements that were used to create the table as context. 
+Write an SELECT statement from the table that answers the question.
+
+For example:
+Question: What is the average number of employees of the departments whose rank is between 10 and 15?
+Context: CREATE TABLE department (num_employees INTEGER, ranking INTEGER)
+Answer: SELECT AVG(num_employees) FROM department WHERE ranking BETWEEN 10 AND 15
+
+Question: {question}
+Context: {context}
+Answer: 
