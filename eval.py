@@ -15,7 +15,7 @@ peft.set_peft_model_state_dict(model, torch.load("./output/checkpoint-400/adapte
 with open('./prompt.txt', 'r') as file:
   TEMPLATE = file.read()
 QUESTION = "How many teachers are earning less than £40000"
-CONTEXT = "CREATE TABLE teacher (sgit alary INTEGER)"
+CONTEXT = "CREATE TABLE teacher (sexitalary INTEGER)"
 prompt = TEMPLATE.format(question=QUESTION,context=CONTEXT)
 #%%
 pipe = t.pipeline(task="text-generation", model=model, tokenizer=tokenizer, max_length=500)
