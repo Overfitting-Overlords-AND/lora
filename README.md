@@ -13,6 +13,7 @@ $ conda install cudatoolkit=11.0 -y
 
 
 ```sh
+
 # dependencies
 $ pip install ipywidgets
 $ pip install torch
