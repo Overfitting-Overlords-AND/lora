@@ -3,7 +3,7 @@ import config
 
 tokenizer = transformers.AutoTokenizer.from_pretrained("NousResearch/Llama-2-7b-hf")
 
-if config.BASE_MODEL:
+if not config.BASE_MODEL:
     tokenizer.add_special_tokens({'additional_special_tokens':[
     "CREATE",
     "TABLE",
