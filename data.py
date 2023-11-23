@@ -27,7 +27,9 @@ class DatasetReader(Dataset):
 
   def tokenize(self, elm):
     res = self.tokenizer(elm["prompt"])
-    res["labels"] = res["input_ids"].copy().append(self.tokenizer.eos_token_id)[1:]
+    res["labels"] = res["input_ids"].copy()
+    res["labels"].append(self.tokenizer.eos_token_id)
+    res["labels"] = res["labels"][1:]
     return res
 
   def max_seq_len(self):
