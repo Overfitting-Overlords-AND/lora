@@ -15,7 +15,6 @@ CONTEXT = "CREATE TABLE teacher (salary INTEGER)"
 prompt = TEMPLATE.format(question=QUESTION,context=CONTEXT)
 #%%
 if not config.BASE_MODEL:
-  config = peft.PeftConfig.from_pretrained("./output/checkpoint-800")
   model = peft.PeftModel.from_pretrained(base_model, "./output/checkpoint-800")
   pipe = t.pipeline(task="text-generation", model=model, tokenizer=tokenizer, max_length=500)
 else: 
