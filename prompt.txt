@@ -6,6 +6,7 @@ Question: What is the average number of employees of the departments whose rank 
 Context: CREATE TABLE department (num_employees INTEGER, ranking INTEGER)
 Answer: SELECT AVG(num_employees) FROM department WHERE ranking BETWEEN 10 AND 15
 
+Now please complete the following:
 Question: {question}
 Context: {context}
 Answer: 
