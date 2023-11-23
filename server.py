@@ -12,7 +12,7 @@ async def startup_event():
   print("Starting Up")
   app.state.tokenizer = tokenizer
   app.state.tokenizer.pad_token_id = 0
-  app.state.base_model = t.AutoModelForCausalLM.from_pretrained("NousResearch/Llama-2-7b-hf", load_in_8bit=True, torch_dtype=torch.float16)
+  app.state.base_model = t.AutoModelForCausalLM.from_pretrained("NousResearch/Llama-2-7b-hf", load_in_8bit=False, torch_dtype=torch.float)
   app.state.model = peft.PeftModel.from_pretrained(app.state.base_model, "./output/checkpoint-800")
   app.state.pipe = t.pipeline(task="text-generation", model=app.state.model, tokenizer=app.state.tokenizer, max_length=500)
   with open('./prompt.txt', 'r') as file:
