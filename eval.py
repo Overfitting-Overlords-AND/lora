@@ -6,7 +6,7 @@ import peft
 import config
 #%%
 tokenizer.pad_token_id = 0
-base_model = t.AutoModelForCausalLM.from_pretrained("NousResearch/Llama-2-7b-hf", load_in_8bit=True, torch_dtype=torch.float16)
+base_model = t.AutoModelForCausalLM.from_pretrained("NousResearch/Llama-2-7b-hf", load_in_8bit=False, torch_dtype=torch.float16)
 base_model.resize_token_embeddings(len(tokenizer))
 #%%
 with open('./prompt.txt', 'r') as file:

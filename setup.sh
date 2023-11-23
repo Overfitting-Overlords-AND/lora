@@ -5,6 +5,9 @@ rm -rf ~/miniconda3/miniconda.sh
 
 export PATH=~/miniconda3/bin:~/miniconda3/scripts:$PATH
 
+~/miniconda3/bin/conda init bash
+~/miniconda3/bin/conda init zsh
+
 conda init bash
 conda init zsh
 conda install python=3.11.5
@@ -13,6 +16,6 @@ conda create -n tts
 conda activate tts
 conda install cudatoolkit=11.0 -y
 
-pip install torch sentencepiece datasets bitsandbytes peft accelerate scipy pipx wandb
+pip install torch sentencepiece datasets bitsandbytes peft accelerate scipy pipx wandb uvicorn
 pip install huggingface_hub=0.2.1
 pip install huggingface_hub[torch]
