@@ -2,7 +2,7 @@ import transformers as t
 import peft
 import torch
 import os
-from token import tokenizer
+from tokens import tokenizer
 
 
 def get_model():
