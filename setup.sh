@@ -14,4 +14,5 @@ conda activate tts
 conda install cudatoolkit=11.0 -y
 
 pip install torch sentencepiece datasets bitsandbytes peft accelerate scipy pipx
-
+pip install huggingface_hub=0.2.1
+pip install huggingface_hub[torch]
