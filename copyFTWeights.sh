@@ -2,7 +2,7 @@
 
 # Variables
 REMOTE_HOST="80.124.71.136"
-REMOTE_PORT="12829"
+REMOTE_PORT="12847"
 REMOTE_USER="root"
 PRIVATE_KEY_FILE="~/.ssh/gpu" 
 REMOTE_DIR="/workspace/lora/output/*" 
