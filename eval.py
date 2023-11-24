@@ -11,8 +11,8 @@ base_model.resize_token_embeddings(len(tokenizer))
 #%%
 with open('./prompt.txt', 'r') as file:
   TEMPLATE = file.read()
-QUESTION = "How many teachers does the student named CHRISSY NABOZNY have?"
-CONTEXT = "CREATE TABLE teachers (classroom VARCHAR); CREATE TABLE list (classroom VARCHAR, firstname VARCHAR, lastname VARCHAR)"
+QUESTION = "How many teachers are earning less than £40000"
+CONTEXT = "CREATE TABLE teacher (salary INTEGER)"
 # SELECT COUNT(*) FROM list AS T1 JOIN teachers AS T2 ON T1.classroom = T2.classroom WHERE T1.firstname = “CHRISSY” AND T1.lastname = “NABOZNY”
 
 prompt = TEMPLATE.format(question=QUESTION,context=CONTEXT)
