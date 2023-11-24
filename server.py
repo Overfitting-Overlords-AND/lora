@@ -26,13 +26,13 @@ async def startup_event():
 def on_root():
   return { "message": "Hello App" }
 
-@app.post("/text_to_sql")
+@app.post("/from_text_to_sql")
 async def text_to_sql(request: fastapi.Request):
   payload = await request.json()
-  prompt = app.state.template.format(question=payload["QUESTION"],context=payload["CONTEXT"])
+  prompt = app.state.template.format(question=payload["txt"],context=payload["ctx"])
   answer = app.state.pipe(prompt)
-  print("Input question: ", payload["question"])
-  print("Input context: ", payload["context"])
+  print("Input question: ", payload["txt"])
+  print("Input context: ", payload["ctx"])
   return answer
 
 
