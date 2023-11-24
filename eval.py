@@ -18,7 +18,7 @@ CONTEXT = "CREATE TABLE teachers (classroom VARCHAR); CREATE TABLE list (classro
 prompt = TEMPLATE.format(question=QUESTION,context=CONTEXT)
 #%%
 if not config.BASE_MODEL:
-  model = peft.PeftModel.from_pretrained(base_model, "./output/checkpoint-800")
+  model = peft.PeftModel.from_pretrained(base_model, "./output/checkpoint-2200")
   pipe = t.pipeline(task="text-generation", model=model, tokenizer=tokenizer, max_length=500)
 else: 
   pipe = t.pipeline(task="text-generation", model=base_model, tokenizer=tokenizer, max_length=500)
